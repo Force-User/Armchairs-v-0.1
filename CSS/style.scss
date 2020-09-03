@@ -1,0 +1,161 @@
+$lightBlue:#5892a6;
+$areaWidth: 960px;
+$fontColor:#535353;
+$widthProcent:100%;
+$heightProcent:100%;
+@mixin inp {
+    width: 260px;
+    height: 46px;
+    border-radius: 20px;
+    color: #9c9c9c;
+    border: 1px solid #d5e4ef;
+    background-color: #ffffff;
+    outline: none;
+}
+
+@mixin Circle() {
+    width: 150px;
+    height: 150px;
+    background-color: #ffffff;
+}
+
+@mixin btnLong() {
+    width: 260px;
+    height: 45px;
+    box-shadow: 0 5px 5px rgba(1, 1, 1, 0.1);
+    border-radius: 23px;
+    background-color: #68b0c9;
+    outline: none;
+    border: none;
+    color: #ffffff;
+}
+
+@mixin flex($vert:center, $cen:center, $pos:row) {
+    display: flex;
+    align-items: $vert;
+    justify-content: $cen;
+    flex-direction: $pos;
+}
+
+* {
+    margin: 0;
+}
+
+.main {
+    width: 100%;
+    height: 5448px;
+    @include flex($cen: flex-start, $pos: column);
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    @include flex();
+    &-content {
+        width: $areaWidth;
+        height: 100%;
+        @include flex(center, space-between);
+    }
+    &-call {
+        width: 210px;
+        height: 43px;
+        @include flex($pos: column);
+        &__number {
+            font-size: 24px;
+            color: $fontColor;
+        }
+        &__link {
+            font-size: 14px;
+            color: $lightBlue;
+        }
+    }
+}
+
+.banner {
+    width: $widthProcent;
+    height: 580px;
+    @include flex();
+    background-image: url(/image/banner.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &-content {
+        width: $areaWidth;
+        height: $heightProcent;
+        @include flex(flex-end, space-around, column);
+        .banner-info {
+            width: 595px;
+            height: 133px;
+            @include flex(flex-end, space-between, column);
+            &__title {
+                color: $fontColor;
+                font-size: 41px;
+                text-align: end;
+            }
+            &__text {
+                color: $lightBlue;
+                font-size: 27px;
+            }
+        }
+        .banner-form {
+            width: 300px;
+            height: 240px;
+            @include flex(center, space-around, column);
+            box-shadow: 0 0 38px rgba(104, 176, 201, 0.34);
+            border-radius: 20px;
+            background-color: #ffffff;
+            &__title {
+                font-size: 20px;
+                color: $lightBlue;
+            }
+            &__text {
+                font-size: 12px;
+            }
+            &__input {
+                @include inp();
+                &::-webkit-input-placeholder {
+                    text-align: center;
+                }
+            }
+            &__button {
+                @include btnLong();
+            }
+        }
+    }
+}
+
+.description {
+    width: $widthProcent;
+    height: 1625px;
+    @include flex();
+    &-content {
+        width: $areaWidth;
+        height: $heightProcent;
+        @include flex(center, space-around, column);
+        &__title {
+            font-size: 30px;
+            color: $lightBlue;
+        }
+        .description-block {
+            width: 781px;
+            height: 300px;
+            @include flex(center, space-between);
+            &--reverse {
+                flex-wrap: wrap-reverse;
+            }
+            .description-info {
+                width: 394px;
+                height: 196px;
+                @include flex(center, space-between, column);
+                &__title {
+                    font-size: 30px;
+                    color: $lightBlue;
+                }
+                &__text {
+                    font-size: 18px;
+                    color: $fontColor;
+                }
+            }
+        }
+    }
+}
