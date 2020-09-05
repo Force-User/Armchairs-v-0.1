@@ -1,115 +1,483 @@
-$lightBlue:#5892a6;
-$areaWidth: 960px;
-$fontColor:#535353;
-$widthProcent:100%;
-$heightProcent:100%;
-@mixin inp {
-    width: 260px;
-    height: 46px;
-    border-radius: 20px;
-    color: #9c9c9c;
-    border: 1px solid #d5e4ef;
-    background-color: #ffffff;
-    outline: none;
-}
-
-@mixin Circle() {
-    width: 150px;
-    height: 150px;
-    background-color: #ffffff;
-}
-
-@mixin btnLong() {
-    width: 260px;
-    height: 45px;
-    box-shadow: 0 5px 5px rgba(1, 1, 1, 0.1);
-    border-radius: 23px;
-    background-color: #68b0c9;
-    outline: none;
-    border: none;
-    color: #ffffff;
-}
-
-@mixin flex($vert:center, $cen:center, $pos:row) {
-    display: flex;
-    align-items: $vert;
-    justify-content: $cen;
-    flex-direction: $pos;
-}
-
-* {
-    margin: 0;
-}
-
-.main {
-    width: 100%;
-    height: 5448px;
-    @include flex($cen: flex-start, $pos: column);
-}
-
-.header {
-    width: 100%;
-    height: 100px;
-    @include flex();
-    &-content {
-        width: $areaWidth;
-        height: 100%;
-        @include flex(center, space-between);
+    $lightBlue:#5892a6;
+    $areaWidth: 960px;
+    $fontColor:#535353;
+    $widthProcent:100%;
+    $heightProcent:100%;
+    @import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
+    @mixin bgimg($url) {
+        background-image: url($url);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
-    &-call {
-        width: 210px;
-        height: 43px;
-        @include flex($pos: column);
-        &__number {
-            font-size: 24px;
-            color: $fontColor;
+    
+    @mixin inp {
+        width: 260px;
+        height: 46px;
+        border-radius: 20px;
+        color: #9c9c9c;
+        border: 1px solid #d5e4ef;
+        background-color: #ffffff;
+        outline: none;
+    }
+    
+    @mixin Circle() {
+        width: 150px;
+        height: 150px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+    
+    @mixin btnLong() {
+        width: 260px;
+        height: 45px;
+        box-shadow: 0 5px 5px rgba(1, 1, 1, 0.1);
+        border-radius: 23px;
+        background-color: #68b0c9;
+        outline: none;
+        border: none;
+        color: #ffffff;
+    }
+    
+    @mixin flex($vert:center,
+    $cen:center,
+    $pos:row) {
+        display: flex;
+        align-items: $vert;
+        justify-content: $cen;
+        flex-direction: $pos;
+    }
+    
+    * {
+        margin: 0;
+        font-family: 'Grandstander', cursive;
+    }
+    
+    .main {
+        width: 100%;
+        height: 5448px;
+        @include flex($cen: flex-start, $pos: column);
+    }
+    
+    .header {
+        width: 100%;
+        height: 100px;
+        @include flex();
+        &-content {
+            width: $areaWidth;
+            height: 100%;
+            @include flex(center,
+            space-between);
         }
-        &__link {
-            font-size: 14px;
-            color: $lightBlue;
+        &-call {
+            width: 210px;
+            height: 43px;
+            @include flex($pos: column);
+            &__number {
+                font-size: 24px;
+                color: $fontColor;
+            }
+            &__link {
+                font-size: 14px;
+                color: $lightBlue;
+            }
         }
     }
-}
-
-.banner {
-    width: $widthProcent;
-    height: 580px;
-    @include flex();
-    background-image: url(/image/banner.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    &-content {
-        width: $areaWidth;
-        height: $heightProcent;
-        @include flex(flex-end, space-around, column);
-        .banner-info {
-            width: 595px;
-            height: 133px;
-            @include flex(flex-end, space-between, column);
+    
+    .banner {
+        width: $widthProcent;
+        height: 580px;
+        @include flex();
+        @include bgimg('/image/banner.png');
+        // background-image: url(/image/banner.png);
+        // background-position: center;
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(flex-end,
+            space-around,
+            column);
+            .banner-info {
+                width: 595px;
+                height: 133px;
+                @include flex(flex-end,
+                space-between,
+                column);
+                &__title {
+                    color: $fontColor;
+                    font-size: 41px;
+                    text-align: end;
+                }
+                &__text {
+                    color: $lightBlue;
+                    font-size: 27px;
+                }
+            }
+            .banner-form {
+                width: 300px;
+                height: 240px;
+                @include flex(center,
+                space-around,
+                column);
+                box-shadow: 0 0 38px rgba(104, 176, 201, 0.34);
+                border-radius: 20px;
+                background-color: #ffffff;
+                &__title {
+                    font-size: 20px;
+                    color: $lightBlue;
+                }
+                &__text {
+                    font-size: 12px;
+                }
+                &__input {
+                    @include inp();
+                    &::-webkit-input-placeholder {
+                        text-align: center;
+                    }
+                }
+                &__button {
+                    @include btnLong();
+                }
+            }
+        }
+    }
+    
+    .description {
+        width: $widthProcent;
+        height: 1625px;
+        @include flex();
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around,
+            column);
+            &__title {
+                font-size: 30px;
+                color: $lightBlue;
+            }
+            .description-block {
+                width: 781px;
+                height: 300px;
+                position: relative;
+                @include flex(center,
+                space-between);
+                .description-info {
+                    width: 394px;
+                    height: 196px;
+                    @include flex(center,
+                    space-between,
+                    column);
+                    &__title {
+                        font-size: 30px;
+                        color: $lightBlue;
+                    }
+                    &__text {
+                        font-size: 18px;
+                        color: $fontColor;
+                    }
+                }
+                &:before {
+                    content: "";
+                    width: 199px;
+                    height: 53px;
+                    position: absolute;
+                    top: -30px;
+                    left: 270px;
+                    @include bgimg('/image/arrow.png')
+                }
+            }
+            .description-block--reverse {
+                flex-direction: row-reverse;
+                &:before {
+                    transform: rotateY(180deg);
+                    -webkit-transform: rotateY(180deg);
+                    -moz-transform: rotateY(180deg);
+                    -ms-transform: rotateY(180deg);
+                    -o-transform: rotateY(180deg);
+                }
+                .description-info {
+                    &__title {
+                        text-align: end;
+                    }
+                    &__text {
+                        text-align: end;
+                    }
+                }
+            }
+        }
+    }
+    
+    .sale {
+        width: $widthProcent;
+        height: 490px;
+        @include flex();
+        @include bgimg('/image/sale.png');
+        &-inner {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            flex-end);
+            .sale-content {
+                position: relative;
+                width: 597px;
+                height: $heightProcent;
+                @include flex(center,
+                space-between);
+                .sale-price {
+                    position: relative;
+                    @include Circle();
+                    @include flex(center,
+                    space-around,
+                    column);
+                    &__current {
+                        font-size: 30px;
+                        color: #d04545;
+                    }
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 75px;
+                        left: 25px;
+                        width: 100px;
+                        border: 1px solid #e8e8e8;
+                    }
+                }
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 330px;
+                    left: 105px;
+                    width: 155px;
+                    height: 64px;
+                    @include bgimg('/image/arrowPrice.png');
+                }
+            }
+            .sale-info {
+                width: 349px;
+                height: 371px;
+                @include flex(center,
+                space-between,
+                column);
+                &-header {
+                    width: $widthProcent;
+                    height: 124px;
+                    @include flex(center,
+                    center,
+                    column);
+                    color: $fontColor;
+                    &__title {
+                        font-size: 55px;
+                    }
+                    &__text {
+                        font-size: 25px;
+                    }
+                    .sale-gift__text {
+                        color: $lightBlue;
+                    }
+                }
+                .promotion {
+                    width: 275px;
+                    height: 200px;
+                    border-radius: 23px;
+                    border: 5px solid #ffffff;
+                    @include flex(center,
+                    space-around,
+                    column);
+                    &-info {
+                        width: 207px;
+                        height: 43px;
+                        @include flex(center,
+                        space-around);
+                        box-sizing: border-box;
+                        &__text {
+                            color: #d35656;
+                        }
+                        img {
+                            margin: 0 5px;
+                        }
+                        //Не законченно
+                    }
+                    &__button {
+                        width: 200px;
+                        height: 50px;
+                        box-shadow: 0 5px 5px rgba(1, 1, 1, 0.1);
+                        border-radius: 23px;
+                        background-color: #68b0c9;
+                        outline: none;
+                        border: none;
+                        cursor: pointer;
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+    
+    .counter {
+        width: $widthProcent;
+        height: 275px;
+        @include flex();
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around);
+            .counter-block {
+                width: 124px;
+                height: 128px;
+                @include flex(center,
+                center,
+                column);
+                @include bgimg('/image/achievements.png');
+                background-size: 80px;
+                &__number {
+                    color: $lightBlue;
+                    font-size: 48px;
+                }
+            }
+        }
+    }
+    
+    .certificate {
+        width: $widthProcent;
+        height: 600px;
+        background-image: linear-gradient(to bottom, #f9fbfd 0%, #ecf3f8 100%);
+        @include flex();
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around,
+            column);
             &__title {
                 color: $fontColor;
-                font-size: 41px;
-                text-align: end;
-            }
-            &__text {
-                color: $lightBlue;
-                font-size: 27px;
+                font-size: 36px;
             }
         }
-        .banner-form {
-            width: 300px;
-            height: 240px;
-            @include flex(center, space-around, column);
-            box-shadow: 0 0 38px rgba(104, 176, 201, 0.34);
-            border-radius: 20px;
-            background-color: #ffffff;
-            &__title {
-                font-size: 20px;
-                color: $lightBlue;
+        &-description {
+            width: 763px;
+            height: 308px;
+            @include flex(center,
+            space-between);
+        }
+        &-info {
+            width: 389px;
+            height: 308px;
+            @include flex(center,
+            space-between,
+            column);
+            .description-header {
+                width: $widthProcent;
+                height: 47px;
+                @include flex(center,
+                space-between);
+                &__title {
+                    color: $lightBlue;
+                    font-size: 22px;
+                    margin-left: 21px;
+                }
             }
             &__text {
-                font-size: 12px;
+                font-size: 18px;
+            }
+        }
+    }
+    
+    .specification {
+        width: $widthProcent;
+        height: 545px;
+        @include flex(center,
+        center);
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around);
+        }
+        &-block {
+            width: 229px;
+            height: 341px;
+            @include flex(center,
+            space-between,
+            column)
+        }
+        .specification-block--left .specification-info {
+            @include flex(flex-end,
+            $pos: column);
+            &__text {
+                text-align: end;
+            }
+        }
+        .specification-block--right .specification-info {
+            @include flex($vert: flex-start, $pos: column);
+        }
+        &-info {
+            width: 228px;
+            height: 135px;
+            @include flex(center,
+            space-between,
+            column);
+            &__title {
+                color: $lightBlue;
+                font-size: 20px;
+            }
+            &__text {
+                color: $fontColor;
+                font-size: 14px;
+                margin-top: 20px;
+            }
+        }
+    }
+    
+    .delivery {
+        width: $widthProcent;
+        height: 348px;
+        @include bgimg('/image/delivery.png');
+        @include flex();
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around);
+            margin-left: 195px;
+        }
+        &-price {
+            @include Circle();
+            @include flex(center,
+            space-around,
+            column);
+            &__sale {
+                color: $lightBlue;
+                padding-top: 10px;
+            }
+            &__current {
+                color: #d04545;
+                font-size: 30px;
+                padding-bottom: 20px;
+            }
+        }
+        &-form {
+            width: 260px;
+            height: 210px;
+            @include flex(center,
+            space-between,
+            column);
+            &__title {
+                font-size: 20px;
+                color: $fontColor;
+                text-align: center;
+            }
+            &__subtitle {
+                background-color: #ffffff;
+                font-size: 20px;
+                color: $lightBlue;
             }
             &__input {
                 @include inp();
@@ -122,40 +490,96 @@ $heightProcent:100%;
             }
         }
     }
-}
-
-.description {
-    width: $widthProcent;
-    height: 1625px;
-    @include flex();
-    &-content {
-        width: $areaWidth;
-        height: $heightProcent;
-        @include flex(center, space-around, column);
-        &__title {
-            font-size: 30px;
+    
+    .comparison {
+        width: $widthProcent;
+        height: 522px;
+        @include flex();
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around,
+            column);
+        }
+        &-header {
+            width: 308px;
+            height: 48px;
+            @include flex(center,
+            space-between);
+            margin-left: 80px;
+            font-size: 22px;
+            &__title {
+                color: $fontColor;
+            }
+            &__title--compare {
+                color: $lightBlue;
+            }
+        }
+        &-inner {
+            width: 926px;
+            height: 299px;
+            @include flex(center,
+            space-between);
+        }
+        &-block {
+            width: 218px;
+            height: 287px;
+            @include flex(flex-end,
+            space-between,
+            column);
+            color: #939393;
+            font-size: 15px;
+        }
+        &-block--compare {
+            @include flex(flex-start,
+            space-between,
+            column);
             color: $lightBlue;
         }
-        .description-block {
-            width: 781px;
-            height: 300px;
-            @include flex(center, space-between);
-            &--reverse {
-                flex-wrap: wrap-reverse;
+    }
+    
+    .information {
+        width: $widthProcent;
+        height: 420px;
+        @include flex();
+        background-color: #ecf3f8;
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around);
+        }
+        &-block {
+            width: 271px;
+            height: 269px;
+            @include flex(center,
+            space-between,
+            column);
+            &__text {
+                color: $fontColor;
             }
-            .description-info {
-                width: 394px;
-                height: 196px;
-                @include flex(center, space-between, column);
-                &__title {
-                    font-size: 30px;
-                    color: $lightBlue;
-                }
-                &__text {
-                    font-size: 18px;
-                    color: $fontColor;
-                }
+            &__address {
+                color: $lightBlue;
+                font-size: 20px;
+            }
+            &__button {
+                @include btnLong();
             }
         }
     }
-}
+    
+    .footer {
+        width: $widthProcent;
+        height: 113px;
+        @include flex();
+        &-content {
+            width: $areaWidth;
+            height: $heightProcent;
+            @include flex(center,
+            space-around);
+            &__link {
+                color: $lightBlue;
+            }
+        }
+    }
